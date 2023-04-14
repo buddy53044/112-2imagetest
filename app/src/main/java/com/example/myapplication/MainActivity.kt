@@ -1,29 +1,13 @@
 package com.example.myapplication
 
-import android.app.Activity
-import android.app.AlertDialog
-import android.app.Dialog
-import android.content.res.Resources
-import android.graphics.*
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
-import android.view.MotionEvent
-import android.view.WindowManager
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.View
+import android.view.View.OnLongClickListener
 import android.widget.Toast
-import androidx.viewbinding.ViewBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.alexvasilkov.gestures.views.GestureImageView
 import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.databinding.MenuComfirmBinding
-import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.text.Text
-import com.google.mlkit.vision.text.TextRecognition
-import com.google.mlkit.vision.text.TextRecognizer
-import com.google.mlkit.vision.text.chinese.ChineseTextRecognizerOptions
-import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 
 
 class MainActivity : AppCompatActivity() {
@@ -35,10 +19,32 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val imageView: GestureImageView = binding.imageView
 
 
 
+        binding.run {
 
+
+            imageView.setImageBitmap(BitmapFactory.decodeResource(resources, R.drawable.test3))
+
+            // Applying custom settings (note, that all settings can be also set in XML)
+
+
+            imageView.setOnClickListener(View.OnClickListener { view: View? ->
+                Toast.makeText(this@MainActivity, "oneclick", Toast.LENGTH_SHORT).show()
+            })
+
+            imageView.setOnLongClickListener(OnLongClickListener { view: View? ->
+                Toast.makeText(this@MainActivity, "longclick", Toast.LENGTH_SHORT).show()
+
+                true
+            })
+        }
+
+
+
+    }
 }
 
 
